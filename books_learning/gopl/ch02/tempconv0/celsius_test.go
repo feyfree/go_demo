@@ -43,3 +43,11 @@ func TestTwo(t *testing.T) {
 	// 100
 	// 100
 }
+
+
+// 会有type miss 编译就会报错
+func Test3(t *testing.T) {
+	//c := FToC(212.0)
+	//e := CToF(100)
+	//fmt.Println(c == e)
+}
