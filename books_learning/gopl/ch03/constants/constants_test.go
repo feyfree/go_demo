@@ -2,6 +2,8 @@ package constants
 
 import (
 	"fmt"
+	"math"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -81,5 +83,59 @@ const (
 )
 
 func TestPower(t *testing.T) {
+	// debug 的时候可以发现这几个常量都是 untyped int 类型
 	fmt.Println(KiB, MiB, GiB, TiB, PiB)
+	fmt.Println(YiB / ZiB)
+}
+
+// only constants can be untyped
+// 一旦被复制给变量，就会有确切的类型
+func TestUntypedConstants(t *testing.T) {
+	var x float32 = math.Pi
+	var y float64 = math.Pi
+	var z complex128 = math.Pi
+	fmt.Println(x, y, z)
+	fmt.Println(math.Pi)
+
+	// reflect.TypeOf 是无法反应untyped constants 的
+	fmt.Println(reflect.TypeOf(math.Pi))
+	var f float64 = 3 + 0i // untyped complex -> float64
+	fmt.Println(reflect.TypeOf(f))
+	f = 2 // untyped integer -> float64
+	fmt.Println(reflect.TypeOf(f))
+	f = 1e123 // untyped floating-point -> float64
+	fmt.Println(reflect.TypeOf(f))
+	f = 'a' // untyped rune -> float64
+	fmt.Println(reflect.TypeOf(f))
+
+}
+
+func TestOperands(t *testing.T) {
+	var f float64 = 212
+	fmt.Println((f - 32) * 5 / 9)     // "100"; (f - 32) * 5 is a float64
+	fmt.Println(5 / 9 * (f - 32))     // "0"; 5/9 is an untyped integer, 0
+	fmt.Println(5.0 / 9.0 * (f - 32)) // "100"; 5.0/9.0 is an untyped float
+}
+
+func TestImplicit(t *testing.T) {
+	i := 0      // untyped integer; implicit int(0)
+	r := '\000' // untyped rune; implicit rune('\000')
+	f := 0.0    // untyped floating-point; implicit float64(0.0)
+	c := 0i     // untyped complex; implicit complex128(0i)
+	fmt.Println(i, r, f, c)
+}
+
+func TestExplicitType(t *testing.T) {
+	// short variable 依赖 go compiler
+	// 指明类型的话还是主动显示声明类型
+	var i = int8(0)
+	// 或者
+	// var i int8 = 0
+	fmt.Printf("%T\n", i)
+
+	fmt.Printf("%T\n", 0)      // "int"
+	fmt.Printf("%T\n", 0.0)    // "float64"
+	fmt.Printf("%T\n", 0i)     // "complex128"
+	fmt.Printf("%T\n", '\000') // "int32" (rune)
+
 }
