@@ -82,6 +82,14 @@ const (
 	YiB // 1208925819614629174706176
 )
 
+func TestConstantAddress(t *testing.T) {
+	// Constants are not listed as addressable
+	//fmt.Println(&KiB)
+	a := KiB
+	b := KiB
+	fmt.Println(&a, &b)
+}
+
 func TestPower(t *testing.T) {
 	// debug 的时候可以发现这几个常量都是 untyped int 类型
 	fmt.Println(KiB, MiB, GiB, TiB, PiB)

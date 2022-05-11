@@ -59,3 +59,9 @@ func TestBasename1(t *testing.T) {
 	fmt.Println(basename2("c.d.go"))   // "c.d"
 	fmt.Println(basename2("abc"))      // "abc"
 }
+
+func TestEscape(t *testing.T) {
+	fmt.Println(`\n`)      // \n 注意这个是raw string
+	fmt.Println("\x61123") // a123  这种是16 进制 (最大 hh)
+	fmt.Println("\101")    // a 这种是8进制 (377 最大)
+}

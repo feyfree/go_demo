@@ -2,6 +2,7 @@ package strings
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 	"unicode/utf8"
 )
@@ -56,4 +57,16 @@ func TestRuneAndString(t *testing.T) {
 
 	// 无效rune 这地方会报compiler failure
 	//fmt.Println(string(1234567))
+}
+
+func TestRuneAndInt32(t *testing.T) {
+	var a rune = 'a'
+	fmt.Println(reflect.TypeOf(a))
+}
+
+func TestRuneEscape(t *testing.T) {
+	fmt.Println("世界")                       // 世界
+	fmt.Println("\xe4\xb8\x96\xe7\x95\x8c") // 世界
+	fmt.Println("\u4e16\u754c")             // 世界
+	fmt.Println("\U00004e16\U0000754c")     // 世界
 }
