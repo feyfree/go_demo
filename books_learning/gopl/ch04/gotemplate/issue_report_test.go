@@ -1,4 +1,4 @@
-package issues
+package gotemplate
 
 import (
 	"go_demo/books_learning/gopl/ch04/github"
@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-//!+template
-const templ = `{{.TotalCount}} issues:
+//!+gotemplate
+const templ = `{{.TotalCount}} gotemplate:
 {{range .Items}}----------------------------------------
 Number: {{.Number}}
 User:   {{.User.Login}}
@@ -18,7 +18,7 @@ Title:  {{.Title | printf "%.64s"}}
 Age:    {{.CreatedAt | daysAgo}} days
 {{end}}`
 
-//!-template
+//!-gotemplate
 
 //!+daysAgo
 func daysAgo(t time.Time) int {
@@ -67,7 +67,7 @@ func noMust() {
 //!+output
 $ go build gopl.io/ch4/issuesreport
 $ ./issuesreport repo:golang/go is:open json decoder
-13 issues:
+13 gotemplate:
 ----------------------------------------
 Number: 5680
 User:   eaigner

@@ -4,8 +4,8 @@
 // See page 112.
 //!+
 
-// Issues prints a table of GitHub issues matching the search terms.
-package issues
+// Issues prints a table of GitHub gotemplate matching the search terms.
+package gotemplate
 
 import (
 	"fmt"
@@ -22,7 +22,7 @@ func TestIssues(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%d issues:\n", result.TotalCount)
+	fmt.Printf("%d gotemplate:\n", result.TotalCount)
 	for _, item := range result.Items {
 		fmt.Printf("#%-5d %9.9s %.55s\n",
 			item.Number, item.User.Login, item.Title)
@@ -33,9 +33,9 @@ func TestIssues(t *testing.T) {
 
 /*
 //!+textoutput
-$ go build gopl.io/ch4/issues
-$ ./issues repo:golang/go is:open json decoder
-13 issues:
+$ go build gopl.io/ch4/gotemplate
+$ ./gotemplate repo:golang/go is:open json decoder
+13 gotemplate:
 #5680    eaigner encoding/json: set key converter on en/decoder
 #6050  gopherbot encoding/json: provide tokenizer
 #8658  gopherbot encoding/json: use bufio
