@@ -9,6 +9,7 @@ import (
 func TestMaps(t *testing.T) {
 
 	ages := make(map[string]int) // mapping from strings to ints
+	ages["ray"] = 27
 	fmt.Println(ages)
 	ages = map[string]int{
 		"alice":   31,
@@ -65,4 +66,9 @@ func TestEqual(t *testing.T) {
 	x := map[string]int{"a": 1, "b": 2}
 	y := map[string]int{"a": 1, "c": 2}
 	fmt.Println(equal(x, y))
+}
+
+func TestExists(t *testing.T) {
+	a := make(map[string]int)
+	fmt.Println(a["1"]) // 0
 }
