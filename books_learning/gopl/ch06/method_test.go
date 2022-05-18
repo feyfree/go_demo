@@ -74,3 +74,9 @@ func TestExpressionAndValue(t *testing.T) {
 	time.AfterFunc(1*time.Second, f) // Rocket Launch now: 1
 	time.Sleep(15 * time.Second)
 }
+
+func TestInnerFields(t *testing.T) {
+	// 外部引用无法对小写的内部 field 直接访问
+	//set:= intset.IntSet{}
+	//set.words
+}
