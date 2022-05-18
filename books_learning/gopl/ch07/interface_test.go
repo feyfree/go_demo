@@ -71,3 +71,37 @@ func f(out io.Writer) {
 		out.Write([]byte("Hello"))
 	}
 }
+
+// type assertion like x.(T)
+// 1. 如果 T 是具体类型， type assertion 会检查 x 的 dynamic value 是不是 T， 如果是会返回 x 的 dynamic value, 否则会报错(使用二元组可以避免 panic)
+// 2. 如果 T 是interface 类型, 会检查 x 的 dynamic value 会不会 satisfy T
+//
+func TestTypeAssertions(t *testing.T) {
+	var w io.Writer
+	w = os.Stdout
+	_, ok := w.(*os.File)
+	if ok {
+		fmt.Println("w holds : os.Stdout")
+	}
+	// panic: interface holds *os.File, not *bytes.Buffer
+	//c := w.(*bytes.Buffer)
+
+	_, right := w.(*bytes.Buffer)
+	if !right {
+		fmt.Println("w holds : not bytes.Buffer")
+	}
+}
+
+func TestTypeAssertions2(t *testing.T) {
+
+	var w io.Writer
+	w = os.Stdout
+	_ = w.(io.ReadWriter) // success: *os.File has both Read and Write
+
+	//w = new(bytecounter.ByteCounter)
+	// panic: *ByteCounter has no Read method
+	//_ = w.(io.ReadWriter)
+
+	rw := w.(io.ReadWriter)
+	fmt.Printf("%T \n", rw)
+}
