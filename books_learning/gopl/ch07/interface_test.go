@@ -90,6 +90,14 @@ func TestTypeAssertions(t *testing.T) {
 	if !right {
 		fmt.Println("w holds : not bytes.Buffer")
 	}
+
+	//y := os.Stdout
+	// 这样写的话会编译不通过 invalid type assertion: y.(io.Writer) (non-interface type *os.File on left)
+	// Type switches require an interface to introspect.
+	// If you are passing a value of known type to it it bombs out.
+	// If you make a function that accepts an interface as a parameter, it will work
+	//_, isWriter := y.(io.Writer)
+	//fmt.Println(isWriter)
 }
 
 func TestTypeAssertions2(t *testing.T) {
