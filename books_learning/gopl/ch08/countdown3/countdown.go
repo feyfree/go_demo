@@ -31,9 +31,12 @@ func main() {
 	//!+
 	fmt.Println("Commencing countdown.  Press return to abort.")
 	tick := time.Tick(1 * time.Second)
+	// for 循环结束, 实际上 这个 tick 分配的goroutine 还在跑， 会产生 goroutine leak
 	for countdown := 10; countdown > 0; countdown-- {
 		fmt.Println(countdown)
 		select {
+		// The Tick function is convenient, but it’s appropriate only when the ticks will be needed
+		// throughout the lifetime of the application
 		case <-tick:
 			// Do nothing.
 		case <-abort:

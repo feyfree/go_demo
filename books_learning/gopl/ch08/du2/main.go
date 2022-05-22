@@ -48,6 +48,7 @@ func main() {
 		tick = time.Tick(500 * time.Millisecond)
 	}
 	var nfiles, nbytes int64
+	// 相当于是自定义的label, 用于goto continue break 跳转时制定的目标
 loop:
 	for {
 		select {
