@@ -51,3 +51,16 @@ func TestClose(t *testing.T) {
 		fmt.Println("channel closed, data invalid.")
 	}
 }
+
+func wait(t chan struct{}) {
+	<-t
+	fmt.Println("Now closed")
+}
+
+func TestChannelClose(t *testing.T) {
+	a := make(chan struct{})
+	go wait(a)
+	time.Sleep(3 * time.Second)
+	close(a)
+	time.Sleep(3 * time.Second)
+}
