@@ -26,3 +26,13 @@ func TestBinarySearch(t *testing.T) {
 
 	fmt.Println(BinarySearch([]int{1, 2}, 2))
 }
+
+func TestMergeSortTopDown(t *testing.T) {
+	MergeSortTopDown(data)
+	fmt.Println(data)
+}
+
+func TestMergeSortBottomUp(t *testing.T) {
+	MergeSortBottomUp(data)
+	fmt.Println(data)
+}
