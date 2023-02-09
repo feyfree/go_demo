@@ -40,4 +40,5 @@ func TestMergeSortBottomUp(t *testing.T) {
 func TestHeapSort(t *testing.T) {
 	HeapSort(data)
 	fmt.Println(data)
+
 }
