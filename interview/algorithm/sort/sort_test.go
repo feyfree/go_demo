@@ -36,3 +36,8 @@ func TestMergeSortBottomUp(t *testing.T) {
 	MergeSortBottomUp(data)
 	fmt.Println(data)
 }
+
+func TestHeapSort(t *testing.T) {
+	HeapSort(data)
+	fmt.Println(data)
+}
