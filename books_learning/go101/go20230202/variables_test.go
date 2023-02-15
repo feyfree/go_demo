@@ -1,6 +1,9 @@
 package go20230202
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestVariables(t *testing.T) {
 	//const a uint8 = 256
@@ -54,4 +57,16 @@ func TestIota(t *testing.T) {
 	println(q, r)          // 8 12
 	println(s, a, u, v, w) // 7 7 8 8 9
 	println(x, y, z)       // 0 0 1
+}
+
+func TestVar(t *testing.T) {
+	var a int
+	fmt.Println(a == 0)
+	var b *int
+	fmt.Println(b == nil)
+	//fmt.Println(*b) // panic: runtime error: invalid memory address or nil pointer dereference [recovered]
+	// new 申请了一段空间， 并返回指针
+	c := new(int)
+	fmt.Println(c == nil)
+
 }

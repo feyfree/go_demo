@@ -11,6 +11,10 @@ func (age *Age) Increase() {
 	*age++
 }
 
+func (age *Age) IsNil() bool {
+	return age == nil
+}
+
 // FilterFunc 为自定义的函数类型FilterFunc声明方法。
 type FilterFunc func(in int) bool
 
@@ -44,4 +48,16 @@ func (b Book) Pages() int {
 
 func (b *Book) SetPages(pages int) {
 	b.pages = pages
+}
+
+type MyInt int
+
+func (mi MyInt) IsOdd() bool {
+	return mi%2 == 1
+}
+
+type MyAge MyInt
+
+type MyInfo struct {
+	MyInt
 }
