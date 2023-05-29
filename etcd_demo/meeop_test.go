@@ -30,5 +30,5 @@ func TestReadFile(t *testing.T) {
 		listen("aaa")
 	}()
 
-	//select {}
+	select {}
 }
