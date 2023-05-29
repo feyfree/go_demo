@@ -40,6 +40,8 @@ func TestReflect02(t *testing.T) {
 	tt := reflect.TypeOf(T{})
 	fmt.Println(tp.Kind(), tt.Kind()) // ptr slice
 
+	fmt.Println(reflect.ValueOf(new(interface{})).Kind())
+
 	// 使用间接的方法得到表示两个接口类型的reflect.Type值。
 	ti, tim := tp.Elem(), tt.Elem()
 	fmt.Println(ti.Kind(), tim.Kind()) // interface interface
