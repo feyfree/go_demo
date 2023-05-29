@@ -40,3 +40,19 @@ func TestContext(t *testing.T) {
 		fmt.Println("main process exit!")
 	}
 }
+
+func TestWithCancel(t *testing.T) {
+	ctx, cancelFunc := context.WithCancel(context.Background())
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		cancelFunc()
+	}()
+
+	select {
+	case <-time.After(5 * time.Second):
+		fmt.Println("Done")
+	case <-ctx.Done():
+		fmt.Println(ctx.Err())
+	}
+}
