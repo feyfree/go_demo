@@ -11,7 +11,7 @@ import (
 func TestReadFile(t *testing.T) {
 	dir, _ := os.Getwd()
 
-	filepath := dir + "/aaa.txt"
+	filepath := dir + "/aaa.sh"
 	fmt.Println(filepath)
 
 	go func() {

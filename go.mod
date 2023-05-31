@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/google/wire v0.5.0
 	go.etcd.io/etcd/client/v3 v3.5.9
+	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 	golang.org/x/net v0.0.0-20220513224357-95641704303c
 )
 
